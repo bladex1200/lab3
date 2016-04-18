@@ -8,8 +8,16 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+Button addButton;
+EditText numOne;
+EditText numTwo;
+TextView sumNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +25,35 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        addButton = (Button)findViewById(R.id.add_button);
+        numOne = (EditText)findViewById(R.id.num1);
+        numTwo = (EditText)findViewById(R.id.num2);
+        sumNum = (TextView)findViewById(R.id.sum);
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                int firstnum = 0;
+                int secondnum = 0;
+
+                try {
+                    firstnum = Integer.parseInt(numOne.getText().toString());
+                } catch(NumberFormatException nfe) {
+                    System.out.println("Could not parse " + nfe);
+                }
+
+                try {
+                    secondnum = Integer.parseInt(numTwo.getText().toString());
+                } catch(NumberFormatException nfe) {
+                    System.out.println("Could not parse " + nfe);
+                }
+
+                int sum = sum(firstnum, secondnum);
+                sumNum.setText(String.valueOf(sum));
+            }
+        });
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -26,6 +63,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
+
     }
 
     @Override
