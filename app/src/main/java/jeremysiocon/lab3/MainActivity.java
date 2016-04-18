@@ -49,4 +49,10 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    // Sum equation
+    public int sum(int x, int y) {
+
+        return x + y;
+    }
 }
